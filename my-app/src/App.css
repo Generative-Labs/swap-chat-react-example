@@ -1,0 +1,6 @@
+.channelContainer {
+  height: 100vh;
+  display: grid;
+  background-color: #fafafa;
+  grid-template-rows: min-content;
+}
