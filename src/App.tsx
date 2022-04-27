@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import {
   Chat,
   Channel,
@@ -6,34 +6,27 @@ import {
   CreateChannel,
   DashBoard,
   ContactList,
-} from 'web3-mq-react';
-import { Web3MQ } from 'web3-mq';
-import MessagingChannelListHeader from './components/MessagingChannelListHeader';
-import './App.css';
-import 'web3-mq-react/dist/css/index.css';
-import ChannelInner from './components/ChannelInner';
+} from "web3-mq-react";
+import { Web3MQ } from "web3-mq";
+import MessagingChannelListHeader from "./components/MessagingChannelListHeader";
+import "./App.css";
+import "web3-mq-react/dist/css/index.css";
+import ChannelInner from "./components/ChannelInner";
+import Login from "./components/Login";
+import useLogin from "./hooks/useLogin";
 
-function App() {
-  const [token, setToken] = useState('');
-
-  // get one time JWT
-  useEffect(() => {
-    fetch('https://chat.web3messaging.online/onetime_jwt')
-      .then((response) => response.json())
-      .then((data) => {
-        setToken(data.data.access_token);
-      });
-  }, []);
+const App = () => {
+  const { signMetamask, token } = useLogin();
 
   if (!token) {
-    return null;
+    return <Login sign={signMetamask} />;
   }
 
   const client = Web3MQ.getInstance(token);
   return (
     <Chat client={client}>
       <DashBoard />
-      <div className='channelContainer'>
+      <div className="channelContainer">
         <MessagingChannelListHeader />
         <ChannelList />
         <ContactList />
@@ -44,6 +37,6 @@ function App() {
       </Channel>
     </Chat>
   );
-}
+};
 
 export default App;
