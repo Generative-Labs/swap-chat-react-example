@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   Chat,
   Channel,
@@ -6,14 +6,14 @@ import {
   CreateChannel,
   DashBoard,
   ContactList,
-} from "web3-mq-react";
-import { Web3MQ } from "web3-mq";
-import MessagingChannelListHeader from "./components/MessagingChannelListHeader";
-import "./App.css";
-import "web3-mq-react/dist/css/index.css";
-import ChannelInner from "./components/ChannelInner";
-import Login from "./components/Login";
-import useLogin from "./hooks/useLogin";
+} from 'web3-mq-react';
+import { Web3MQ } from 'web3-mq';
+import ChannelHead from './components/ChannelHead';
+import './App.css';
+import 'web3-mq-react/dist/css/index.css';
+import ChannelInner from './components/ChannelInner';
+import Login from './components/Login';
+import useLogin from './hooks/useLogin';
 
 const App = () => {
   const { signMetamask, token } = useLogin();
@@ -26,8 +26,8 @@ const App = () => {
   return (
     <Chat client={client}>
       <DashBoard />
-      <div className="channelContainer">
-        <MessagingChannelListHeader />
+      <div className='channelContainer'>
+        <ChannelHead />
         <ChannelList />
         <ContactList />
       </div>

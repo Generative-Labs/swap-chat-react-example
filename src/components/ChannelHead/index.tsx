@@ -1,8 +1,8 @@
 import React from 'react';
 import { Avatar, useChatContext } from 'web3-mq-react';
-import { CreateChannelIcon } from '../assets/CreateChannelIcon';
-import image from '../image/photo-1546820389-44d77e1f3b31.jpeg';
-import './MessagingChannelListHeader.css';
+import { CreateChannelIcon } from '../../assets/CreateChannelIcon';
+import image from '../../image/photo-1546820389-44d77e1f3b31.jpeg';
+import './index.css';
 
 const MessagingChannelListHeader: React.FC = React.memo((props) => {
   const { client, showCreateChannel, setShowCreateChannel } = useChatContext();

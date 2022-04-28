@@ -1,6 +1,6 @@
 import { Window, MessageInput, MessageList, Thread, MessageHeader } from 'web3-mq-react';
 
-import logo from '../image/photo-1546820389-44d77e1f3b31.jpeg';
+import logo from '../../image/photo-1546820389-44d77e1f3b31.jpeg';
 
 // const PropMessage = () => {
 //   return <div>PropMessage</div>;
