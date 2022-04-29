@@ -1,4 +1,4 @@
-const CloseModal = (props: any) => (
+export const OpenModalIcon = (props: any) => (
   <div {...props}>
     <svg
       width='30'
@@ -23,5 +23,3 @@ const CloseModal = (props: any) => (
     </svg>
   </div>
 );
-
-export default CloseModal;

@@ -2,34 +2,42 @@ import React, { useCallback, useState } from 'react';
 import { ChatAutoComplete } from 'web3-mq-react';
 import cx from 'classnames';
 
-import OpenModal from '../../icons/OpenModal';
-import TransferIcon from '../../icons/TransferIcon';
-import SudoSwap from '../../icons/SudoswapIcon';
-import WarningIcon from '../../icons/WarningIcon';
+import {
+  OpenModalIcon,
+  TransferIcon,
+  SudoSwapIcon,
+  WarningIcon,
+} from '../../icons';
+import transferImg from '../../image/commingSoonImg.png';
 
 import Modal from '../Modal';
+import SudoSwap from '../SudoSwap';
 import useToggle from '../../hooks/useToggle';
 
 import ss from './index.module.scss';
 
+enum OperaTypeEnum {
+  Transfer = 'Transfer',
+  Sudoswap = 'Sudoswap',
+}
+
 const operationConfigs = [
   {
-    type: 'transfer',
+    type: OperaTypeEnum.Transfer,
     icon: <TransferIcon />,
   },
   {
-    type: 'sudoswap',
-    icon: <SudoSwap />,
+    type: OperaTypeEnum.Sudoswap,
+    icon: <SudoSwapIcon />,
   },
 ];
 
 const MsgInput: React.FC = () => {
   const { visible, toggle } = useToggle();
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [modalType, setModalType] = useState<string | undefined>(undefined);
 
   const operationClicked = (type: string) => {
-    console.log(type);
-    setShowModal(true);
+    setModalType(type);
   };
 
   const RenderOperation = useCallback(() => {
@@ -57,7 +65,7 @@ const MsgInput: React.FC = () => {
   return (
     <>
       <div className={ss.inputBox}>
-        <OpenModal
+        <OpenModalIcon
           className={cx(ss.auditBox, {
             [ss.close]: visible,
           })}
@@ -67,12 +75,17 @@ const MsgInput: React.FC = () => {
       </div>
       {visible && <RenderOperation />}
       <Modal
-        visible={showModal}
-        title='title'
+        visible={modalType !== undefined}
+        title={modalType}
         closeModal={() => {
-          setShowModal(false);
+          setModalType(undefined);
         }}>
-        <div>123</div>
+        {modalType === OperaTypeEnum.Transfer && (
+          <div className={ss.transferContainer}>
+            <img src={transferImg} alt='' />
+          </div>
+        )}
+        {modalType === OperaTypeEnum.Sudoswap && <SudoSwap />}
       </Modal>
     </>
   );

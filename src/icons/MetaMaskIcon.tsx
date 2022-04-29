@@ -1,4 +1,4 @@
-const MetaMaskIcon = (props: any) => {
+export const MetaMaskIcon = (props: any) => {
   return (
     <div {...props}>
       <svg
@@ -31,5 +31,3 @@ const MetaMaskIcon = (props: any) => {
     </div>
   );
 };
-
-export default MetaMaskIcon;

@@ -2,7 +2,7 @@ import React, { PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import cx from 'classnames';
 
-import CloseBtn from '../../icons/CloseBtnIcon';
+import { CloseBtnIcon } from '../../icons';
 
 import ss from './index.module.scss';
 
@@ -83,7 +83,7 @@ const Modal = (props: PropsWithChildren<IProps>) => {
       <div className={cx(ss.dialog, dialogClassName, ss[contentClassName])}>
         {modalHeader || (
           <div className={ss.titleContainer}>
-            <CloseBtn onClick={closeModal} className={ss.closeBtn} />
+            <CloseBtnIcon onClick={closeModal} className={ss.closeBtn} />
             <div className={ss.title}>{title}</div>
           </div>
         )}

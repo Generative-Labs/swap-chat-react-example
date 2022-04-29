@@ -1,4 +1,4 @@
-const SudoSwap = (props: any) => (
+export const SudoSwapIcon = (props: any) => (
   <div {...props}>
     <svg
       width='37'
@@ -26,5 +26,3 @@ const SudoSwap = (props: any) => (
     </svg>
   </div>
 );
-
-export default SudoSwap;

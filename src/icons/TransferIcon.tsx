@@ -1,4 +1,4 @@
-const TransferIcon = (props: any) => (
+export const TransferIcon = (props: any) => (
   <div {...props}>
     <svg
       width='21'
@@ -13,5 +13,3 @@ const TransferIcon = (props: any) => (
     </svg>
   </div>
 );
-
-export default TransferIcon;

@@ -1,5 +1,5 @@
 import React from 'react';
-import MetaMaskIcon from '../../icons/MetaMaskIcon';
+import { MetaMaskIcon } from '../../icons';
 
 import './index.css';
 

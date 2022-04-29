@@ -54,3 +54,8 @@
 .close {
   transform: rotateZ(45deg);
 }
+.transferContainer {
+  img {
+    max-width: 600px;
+  }
+}
