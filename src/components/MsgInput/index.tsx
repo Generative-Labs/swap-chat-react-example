@@ -35,29 +35,29 @@ const MsgInput: React.FC = () => {
     return (
       <div className={ss.operationBox}>
         <div className={ss.operation}>
-          {operationConfigs.map((opera) => {
+          {operationConfigs.map((operaItem) => {
             return (
               <div
-                className={ss.operationItem}
-                onClick={() => operationClicked(opera.type)}
+                className={ss.item}
+                onClick={() => operationClicked(operaItem.type)}
               >
-                <div className={ss.operaIcon}>
+                <div className={ss.iconBox}>
                   <img
-                    src={opera.icon}
+                    src={operaItem.icon}
                     className={
-                      opera.type === OPERA_TYPE_ENUM.SUDOSWAP
+                      operaItem.type === OPERA_TYPE_ENUM.SUDOSWAP
                         ? ss.sudoswapIcon
                         : ""
                     }
                     alt=""
                   />
                 </div>
-                <div className={ss.operaText}>{opera.type}</div>
+                <div className={ss.title}>{operaItem.type}</div>
               </div>
             );
           })}
         </div>
-        <div className={ss.warningBox}>
+        <div className={ss.warning}>
           <img src={warningIcon} alt="" />
           General smart contract support is coming soon
         </div>

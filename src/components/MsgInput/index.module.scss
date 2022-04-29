@@ -16,8 +16,7 @@
 
 .operationBox {
   padding: 24px;
-  background: #FAFAFA;
-
+  background: #fafafa;
 }
 .operation {
   display: flex;
@@ -25,12 +24,12 @@
   padding-top: 18px;
   min-height: 50px;
 }
-.operationItem {
+.item {
   display: inline-block;
   width: 20%;
   text-align: center;
 }
-.operaIcon {
+.iconBox {
   margin: auto;
   //margin: auto 14px auto auto;
   width: 48px;
@@ -50,37 +49,33 @@
     height: auto;
   }
 }
-.operaText {
+.title {
   height: 46px;
   text-align: center;
   line-height: 46px;
-  color: #1F2128;
+  color: #1f2128;
   font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
 }
 
-
-.warningBox {
+.warning {
   padding-left: 24px;
   padding-bottom: 8px;
   display: flex;
   align-items: center;
-  img {
-    width: 14px;
-    height: auto;
-    margin-right: 5px;
-  }
-  background: #FAFAFA;
-  font-family: 'Helvetica Neue', sans-serif;
+  background: #fafafa;
+  font-family: "Helvetica Neue", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 10px;
   line-height: 25px;
   height: 25px;
-  color: #BDBDBD;
-
+  color: #bdbdbd;
+  img {
+    width: 14px;
+    height: auto;
+    margin-right: 5px;
+  }
 }
-
-
