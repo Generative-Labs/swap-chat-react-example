@@ -1,78 +1,79 @@
-import React, { useCallback, useState } from "react";
-import { ChatAutoComplete } from "web3-mq-react";
-import useToggle from "../../hooks/useToggle";
-import ss from "./index.module.scss";
+import React, { useCallback, useState } from 'react';
+import { ChatAutoComplete } from 'web3-mq-react';
+import cx from 'classnames';
 
-import transferIcon from "../../assets/svg/transferIcon.svg";
-import sudoswapIcon from "../../assets/svg/sudoswapIcon.svg";
-import warningIcon from "../../assets/svg/warningIcon.svg";
+import OpenModal from '../../icons/OpenModal';
+import TransferIcon from '../../icons/TransferIcon';
+import SudoSwap from '../../icons/SudoswapIcon';
+import WarningIcon from '../../icons/WarningIcon';
 
-import openIcon from "../../assets/svg/openModal.svg";
-import closeIcon from "../../assets/svg/closeModal.svg";
+import Modal from '../Modal';
+import useToggle from '../../hooks/useToggle';
 
-const OPERA_TYPE_ENUM = {
-  TRANSFER: "Transfer",
-  SUDOSWAP: "Sudoswap",
-};
+import ss from './index.module.scss';
 
 const operationConfigs = [
   {
-    type: OPERA_TYPE_ENUM.TRANSFER,
-    icon: transferIcon,
+    type: 'transfer',
+    icon: <TransferIcon />,
   },
   {
-    type: OPERA_TYPE_ENUM.SUDOSWAP,
-    icon: sudoswapIcon,
+    type: 'sudoswap',
+    icon: <SudoSwap />,
   },
 ];
 
 const MsgInput: React.FC = () => {
   const { visible, toggle } = useToggle();
+  const [showModal, setShowModal] = useState<boolean>(false);
 
-  const operationClicked = (type: string) => {};
+  const operationClicked = (type: string) => {
+    console.log(type);
+    setShowModal(true);
+  };
 
   const RenderOperation = useCallback(() => {
     return (
-      <div className={ss.operationBox}>
+      <div className={ss.operationContainer}>
         <div className={ss.operation}>
-          {operationConfigs.map((operaItem) => {
-            return (
-              <div
-                className={ss.item}
-                onClick={() => operationClicked(operaItem.type)}
-              >
-                <div className={ss.iconBox}>
-                  <img
-                    src={operaItem.icon}
-                    className={
-                      operaItem.type === OPERA_TYPE_ENUM.SUDOSWAP
-                        ? ss.sudoswapIcon
-                        : ""
-                    }
-                    alt=""
-                  />
-                </div>
-                <div className={ss.title}>{operaItem.type}</div>
-              </div>
-            );
-          })}
+          {operationConfigs.map((item) => (
+            <div
+              className={ss.operaItem}
+              key={item.type}
+              onClick={() => operationClicked(item.type)}>
+              <div className={ss.iconBox}>{item.icon}</div>
+              <div className={ss.title}>{item.type}</div>
+            </div>
+          ))}
         </div>
         <div className={ss.warning}>
-          <img src={warningIcon} alt="" />
+          <WarningIcon className={ss.icon} />
           General smart contract support is coming soon
         </div>
       </div>
     );
-  }, [visible]);
+  }, []);
+
   return (
     <>
       <div className={ss.inputBox}>
-        <div className={ss.auditBox}>
-          <img src={visible ? closeIcon : openIcon} onClick={toggle} alt="" />
-        </div>
+        <OpenModal
+          className={cx(ss.auditBox, {
+            [ss.close]: visible,
+          })}
+          onClick={toggle}
+        />
         <ChatAutoComplete />
       </div>
       {visible && <RenderOperation />}
+      <Modal
+        visible={showModal}
+        title='title'
+        closeModal={() => {
+          setShowModal(false);
+        }}>
+        <div>123</div>
+      </Modal>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Avatar, useChatContext } from 'web3-mq-react';
-import { CreateChannelIcon } from '../../assets/CreateChannelIcon';
+import { CreateChannelIcon } from '../../icons/CreateChannelIcon';
 import image from '../../image/photo-1546820389-44d77e1f3b31.jpeg';
 import './index.css';
 
