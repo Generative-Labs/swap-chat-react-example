@@ -7,10 +7,10 @@ export const SudoSwapIcon = (props: any) => (
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
       xmlnsXlink='http://www.w3.org/1999/xlink'>
-      <rect x='0.5' width='36' height='36' fill='url(#pattern0)' />
+      <rect x='0.5' width='36' height='36' fill='url(#sudoSwap_icon)' />
       <defs>
         <pattern
-          id='pattern0'
+          id='sudoSwap_icon'
           patternContentUnits='objectBoundingBox'
           width='1'
           height='1'>
