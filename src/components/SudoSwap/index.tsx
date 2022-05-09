@@ -67,38 +67,30 @@ const SudoSwap = () => {
     let sudoSwapData = await fetch(
       `https://chat.web3messaging.online/sudoswap/${value}`
     ).then((response) => response.json());
-    if (sudoSwapData.code !== 0) {
+    const { code, data: tradeData } = sudoSwapData;
+    if (code !== 0) {
       return null;
     }
-    let asset1List = assetDataUtils.decodeAssetDataOrThrow(
-      sudoSwapData.data.Order.takerAssetData
+    let asset1Data = await getAssetsData(
+      assetDataUtils.decodeAssetDataOrThrow(tradeData.Order.takerAssetData)
     );
-    let asset2List = assetDataUtils.decodeAssetDataOrThrow(
-      sudoSwapData.data.Order.makerAssetData
+    let asset2Data = await getAssetsData(
+      assetDataUtils.decodeAssetDataOrThrow(tradeData.Order.makerAssetData)
     );
-
-    let expiryDate = "";
-    if (sudoSwapData.data.Order.expirationTimeSeconds) {
-      expiryDate = convertTimestamp(
-        sudoSwapData.data.Order.expirationTimeSeconds
-      );
-    }
-    let asset1Data = await getAssetsData(asset1List);
-    let asset2Data = await getAssetsData(asset2List);
-    let jumpUrl = `https://sudoswap.xyz/#/swap/${value.substring(
-      0,
-      42
-    )}/${value.substring(42)}`;
     const res = {
-      orderStatus: sudoSwapData.data.Status,
-      expiryDate,
-      creatorAddress: sudoSwapData.data.AccountId,
+      orderStatus: tradeData.Status,
+      expiryDate: tradeData.Order.expirationTimeSeconds
+        ? convertTimestamp(tradeData.Order.expirationTimeSeconds)
+        : "",
+      creatorAddress: tradeData.AccountId,
       recipientAddress:
-        sudoSwapData.data.Recipient ===
-        "0x0000000000000000000000000000000000000000"
+        tradeData.Recipient === "0x0000000000000000000000000000000000000000"
           ? ""
-          : sudoSwapData.data.Recipient,
-      jumpUrl,
+          : tradeData.Recipient,
+      jumpUrl: `https://sudoswap.xyz/#/swap/${value.substring(
+        0,
+        42
+      )}/${value.substring(42)}`,
       asset1Data,
       asset2Data,
     };
