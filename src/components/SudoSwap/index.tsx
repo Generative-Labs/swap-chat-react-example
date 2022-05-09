@@ -4,15 +4,23 @@ import { useInput } from '../../hooks/useInput';
 import ss from "./index.module.scss";
 import { assetDataUtils } from "@0x/order-utils";
 import { convertTimestamp, getAssetsData } from "../../utils/sudoSwap";
+import { useChatContext } from "web3-mq-react";
+import { MsgTypeEnum } from "web3-mq";
 
 interface IStep {
   step: number;
   content: React.ReactNode;
 }
 
-const SudoSwap = () => {
-  const { input } = useInput('');
+interface IProps {
+  closeModal: () => void;
+}
+
+const SudoSwap: React.FC<IProps> = (props) => {
+  const { closeModal } = props;
+  const { input } = useInput("");
   const { value } = input;
+  const { client } = useChatContext();
 
   const stepsMap: IStep[] = useMemo(
     () => [
@@ -95,7 +103,21 @@ const SudoSwap = () => {
       asset2Data,
     };
     // todo 发送消息到聊天室
-    console.log(res, "res");
+    client.mqtt.send(
+      {
+        to: client.channel.activeChannel?.room_id || "",
+        msg_type: MsgTypeEnum.sudoSwapCard,
+        msg_contents: res,
+        from_uid: client.user.userInfo.user_id,
+        belong_to_thread_id: client.messages.activeMessage
+          ? client.messages.activeMessage.id
+          : "",
+        reply_to_msg_id: "",
+      },
+      () => {
+        closeModal();
+      }
+    );
   }, [value]);
 
   const Steps = useCallback((item: IStep) => {

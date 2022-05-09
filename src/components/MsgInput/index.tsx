@@ -85,7 +85,9 @@ const MsgInput: React.FC = () => {
             <img src={transferImg} alt='' />
           </div>
         )}
-        {modalType === OperaTypeEnum.Sudoswap && <SudoSwap />}
+        {modalType === OperaTypeEnum.Sudoswap && <SudoSwap closeModal={ () => {
+            setModalType(undefined);
+        }} />}
       </Modal>
     </>
   );
