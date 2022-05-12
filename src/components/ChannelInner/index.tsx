@@ -1,5 +1,11 @@
-import { Window, MessageInput, MessageList, Thread, MessageHeader } from 'web3-mq-react';
-import MsgInput from "../MsgInput";
+import {
+  Window,
+  MessageInput,
+  MessageList,
+  Thread,
+  MessageHeader,
+} from 'web3-mq-react';
+import MsgInput from '../MsgInput';
 
 import logo from '../../image/photo-1546820389-44d77e1f3b31.jpeg';
 
@@ -11,7 +17,7 @@ const ChannelInner = () => {
   return (
     <>
       <Window>
-        <MessageHeader avatarName="shiny-darkness-5" avatarImg={logo} avatarSize={40} title="Social Demo" />
+        <MessageHeader avatarSize={40} />
         {/* <MessageList Message={PropMessage} /> */}
         <MessageList />
         <MessageInput Input={MsgInput} />

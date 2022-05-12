@@ -7,14 +7,15 @@ import './index.css';
 const MessagingChannelListHeader: React.FC = React.memo((props) => {
   const { client, showCreateChannel, setShowCreateChannel } = useChatContext();
 
-  const { id, name = 'Example User' } = (client.user as any) || {};
+  const { userInfo } = (client.user as any) || {};
+  const { user_name, avatar } = userInfo;
 
   return (
     <div className={'messaging__channel-list'}>
       <div className='messaging__channel-list__header'>
-        <Avatar image={image} name={name} size={40} />
+        <Avatar image={avatar} name={user_name} size={40} />
         <div className={`messaging__channel-list__header__name`}>
-          {name || id}
+          {user_name || ''}
         </div>
         <button
           className={`messaging__channel-list__header__button`}
