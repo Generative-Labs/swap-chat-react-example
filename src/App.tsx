@@ -8,7 +8,7 @@ import Login from './components/Login';
 import useLogin from './hooks/useLogin';
 
 const App = () => {
-  const { signMetamask, token } = useLogin();
+  const { signMetamask, token, logout } = useLogin();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const App = () => {
 
   const client = Web3MQ.getInstance(token);
   return (
-    <Chat client={client} isMobile={isMobile}>
+    <Chat client={client} isMobile={isMobile} logout={logout}>
       <DashBoard />
       <Main />
       <Channel>

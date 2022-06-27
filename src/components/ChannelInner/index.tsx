@@ -4,6 +4,7 @@ import {
   MessageList,
   Thread,
   MessageHeader,
+  AllThreadList,
 } from 'web3-mq-react';
 import MsgInput from '../MsgInput';
 
@@ -23,6 +24,7 @@ const ChannelInner = () => {
         <MessageInput Input={MsgInput} />
       </Window>
       <Thread />
+      <AllThreadList />
     </>
   );
 };

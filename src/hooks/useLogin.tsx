@@ -7,7 +7,10 @@ const useLogin = () => {
     const token = await MetaMask.signMetaMask();
     setToken(token);
   };
-  const logout = () => {};
+  const logout = () => {
+    localStorage.clear();
+    setToken('');
+  };
 
   return { token, signMetamask, logout };
 };
