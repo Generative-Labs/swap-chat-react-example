@@ -19,7 +19,7 @@
     "web-vitals": "^2.1.4",
     "web3": "^1.7.3",
     "web3-mq": "^1.2.23",
-    "web3-mq-react": "^1.0.22"
+    "web3-mq-react": "^1.0.23"
   },
   "scripts": {
     "start": "react-scripts start",
