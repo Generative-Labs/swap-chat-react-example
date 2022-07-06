@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Chat, Channel, DashBoard, Main } from 'web3-mq-react';
+import { Chat, Channel, DashBoard, Main, AppTypeEnum } from 'web3-mq-react';
 import { Web3MQ } from 'web3-mq';
 import 'web3-mq-react/dist/css/index.css';
 
 import ChannelInner from './components/ChannelInner';
 import Login from './components/Login';
 import useLogin from './hooks/useLogin';
-import { AppTypeEnum } from 'web3-mq-react/dist/types/types';
 
 const App = () => {
   const { signMetamask, token, logout } = useLogin();
